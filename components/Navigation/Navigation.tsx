@@ -1,16 +1,29 @@
+"use client"
+
 import Link from "next/link";
-const Navigation = () => {
+import { usePathname } from "next/navigation";
+
+type linkNavigation = {
+  label: string,
+  href: string
+}
+
+type PropsNavigation = {
+  navigation: linkNavigation[]
+}
+
+const Navigation = ({navigation}: PropsNavigation) => {
+  const pathname = usePathname();
+
   return (
     <>
-      <li>
-        <Link href="/">Main</Link>
-      </li>
-      <li>
-        <Link href="/about">About</Link>
-      </li>
-      <li>
-        <Link href="/blog">Blog</Link>
-      </li>
+      {navigation.map((nav) => {
+        return (
+          <li key={nav.label}>
+            <Link className={`${pathname === nav.href ? 'text-primary' : 'text-white'}`} href={nav.href}>{nav.label}</Link>
+          </li>
+        )
+      })}
     </>
   )
 }
