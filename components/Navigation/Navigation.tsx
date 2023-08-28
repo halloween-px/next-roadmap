@@ -18,9 +18,12 @@ const Navigation = ({navigation}: PropsNavigation) => {
   return (
     <>
       {navigation.map((nav) => {
+        const isActive = pathname.includes(nav.href) &&
+        nav.href.length > 1 ||
+        pathname === nav.href;
         return (
           <li key={nav.label}>
-            <Link className={`${pathname === nav.href ? 'text-primary' : 'text-white'}`} href={nav.href}>{nav.label}</Link>
+            <Link className={`${isActive ? 'text-primary' : 'text-white'}`} href={nav.href}>{nav.label}</Link>
           </li>
         )
       })}

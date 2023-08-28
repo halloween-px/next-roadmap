@@ -4,7 +4,9 @@ export default function Home() {
   return (
     <main className="">
       <div className="container">
-        Main
+        <h1 className="mt-4 text-2xl font-bold">
+          Main
+        </h1>
       </div>
     </main>
   )
